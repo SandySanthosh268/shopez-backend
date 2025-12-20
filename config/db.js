@@ -4,18 +4,14 @@ const connectDB = async () => {
   try {
     const mongoURI = process.env.MONGO_URI;
 
-    // 🔒 Defensive check (VERY IMPORTANT)
     if (!mongoURI) {
-      throw new Error('MONGO_URI is not defined in environment variables');
+      throw new Error('MONGO_URI is not defined');
     }
 
-    // Debug log (remove after fix)
     console.log('MONGO_URI value:', mongoURI);
 
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    // ✅ MODERN MONGOOSE CONNECTION
+    await mongoose.connect(mongoURI);
 
     console.log('MongoDB connected');
   } catch (error) {
