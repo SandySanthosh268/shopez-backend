@@ -22,26 +22,41 @@ const orderSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
+
     orderItems: [orderItemSchema],
+
     shippingAddress: {
       address: String,
       city: String,
       postalCode: String,
       country: String,
     },
+
+    paymentMethod: {
+      type: String,
+      default: 'Dummy', // COD / UPI / Razorpay
+    },
+
+    paymentResult: {
+      status: String, // SUCCESS / FAILED
+      transactionId: String,
+    },
+
     totalPrice: {
       type: Number,
       required: true,
-      default: 0,
     },
+
     isPaid: {
       type: Boolean,
       default: false,
     },
+
     paidAt: Date,
+
     status: {
       type: String,
-      default: 'Processing',
+      default: 'Processing', // Processing → Shipped → Delivered
     },
   },
   { timestamps: true }

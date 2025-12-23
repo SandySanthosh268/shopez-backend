@@ -8,7 +8,7 @@ const connectDB = async () => {
       throw new Error('MONGO_URI is not defined');
     }
 
-    console.log('MONGO_URI value:', mongoURI);
+    // console.log('MONGO_URI value:', mongoURI);
 
     // ✅ MODERN MONGOOSE CONNECTION
     await mongoose.connect(mongoURI);
